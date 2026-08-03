@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Registration</title>
+  </head>
+  <body bgcolor="#F0F8FF">
+    <center>
+      <h2>
+        <font face="Arial" color="#003366">Student Registration Form</font>
+      </h2>
+      <p>
+        <font face="Verdana" size="2"
+          ><i>Please register to access the Question Bank.</i></font
+        >
+      </p>
+
+      <table
+        border="1"
+        cellpadding="10"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        width="50%"
+      >
+        <form action="courses.html" method="GET">
+          <tr>
+            <td>
+              <b><font face="Arial">Full Name:</font></b>
+            </td>
+            <td>
+              <input type="text" name="student_name" size="30" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b><font face="Arial">Roll No.:</font></b>
+            </td>
+            <td><input type="text" name="roll_no" size="30" required /></td>
+          </tr>
+          <tr>
+            <td>
+              <b><font face="Arial">Contact Number:</font></b>
+            </td>
+            <td><input type="text" name="contact" size="30" required /></td>
+          </tr>
+          <tr>
+            <td>
+              <b><font face="Arial">Upload Photograph:</font></b>
+            </td>
+            <td>
+              <input type="file" name="photo" accept="image/*" required />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="Register & Access Courses" />
+              <input type="reset" value="Clear Form" />
+            </td>
+          </tr>
+        </form>
+      </table>
+    </center>
+  </body>
+</html>
