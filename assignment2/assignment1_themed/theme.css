@@ -1,0 +1,101 @@
+:root {
+  --bg-dark: #121212;
+  --text-dark: #e8e8e8;
+  --heading-dark: #9ecbff;
+  --link-dark: #7fb3ff;
+  --border-dark: #444444;
+  --input-bg-dark: #1e1e1e;
+
+  --bg-contrast: #000000;
+  --text-contrast: #ffffff;
+  --heading-contrast: #ffff00;
+  --link-contrast: #00ffff;
+  --border-contrast: #ffffff;
+  --input-bg-contrast: #000000;
+}
+
+.theme-switcher {
+  display: inline-flex;
+  gap: 6px;
+}
+.theme-switcher button {
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+  background: transparent;
+  color: inherit;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+.theme-switcher button.active {
+  background: #ffffff;
+  color: #003366;
+  font-weight: bold;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] table,
+html[data-theme="dark"] td,
+html[data-theme="dark"] th {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-dark) !important;
+  border-color: var(--border-dark) !important;
+}
+html[data-theme="dark"] font {
+  color: var(--text-dark) !important;
+}
+html[data-theme="dark"] h1 font,
+html[data-theme="dark"] h2 font {
+  color: var(--heading-dark) !important;
+}
+html[data-theme="dark"] a,
+html[data-theme="dark"] a font {
+  color: var(--link-dark) !important;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea {
+  background-color: var(--input-bg-dark) !important;
+  color: var(--text-dark) !important;
+  border: 1px solid var(--border-dark) !important;
+}
+html[data-theme="dark"] hr {
+  border-color: var(--border-dark) !important;
+}
+html[data-theme="dark"] .theme-switcher button {
+  border-color: var(--border-dark);
+}
+html[data-theme="dark"] .theme-switcher button.active {
+  background: var(--border-dark);
+  color: #fff;
+}
+
+html[data-theme="contrast"] body,
+html[data-theme="contrast"] table,
+html[data-theme="contrast"] td,
+html[data-theme="contrast"] th {
+  background-color: var(--bg-contrast) !important;
+  color: var(--text-contrast) !important;
+  border: 1px solid var(--border-contrast) !important;
+}
+html[data-theme="contrast"] font {
+  color: var(--text-contrast) !important;
+}
+html[data-theme="contrast"] h1 font,
+html[data-theme="contrast"] h2 font {
+  color: var(--heading-contrast) !important;
+}
+html[data-theme="contrast"] a,
+html[data-theme="contrast"] a font {
+  color: var(--link-contrast) !important;
+  text-decoration: underline !important;
+}
+html[data-theme="contrast"] input,
+html[data-theme="contrast"] textarea {
+  background-color: var(--input-bg-contrast) !important;
+  color: var(--text-contrast) !important;
+  border: 1px solid var(--border-contrast) !important;
+}
+html[data-theme="contrast"] hr {
+  border: 1px solid var(--border-contrast) !important;
+}

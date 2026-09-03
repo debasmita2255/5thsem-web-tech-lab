@@ -1,0 +1,83 @@
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --cell-bg: #fff;
+    --cell-border: #ccc;
+    --x-color: #e74c3c; /* Red for X */
+    --o-color: #2ecc71; /* Green for O */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    text-align: center;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+select, button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 0 5px;
+    border-radius: 4px;
+    border: 1px solid var(--cell-border);
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#status {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    min-height: 30px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    background-color: var(--text-color);
+    padding: 5px;
+    border-radius: 8px;
+    margin: 0 auto;
+    width: max-content;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: var(--cell-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cell.x {
+    color: var(--x-color);
+}
+
+.cell.o {
+    color: var(--o-color);
+}

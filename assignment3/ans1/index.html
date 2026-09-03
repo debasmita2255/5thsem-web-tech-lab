@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>IIEST Faculty Data</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="search-container">
+      <h1>Search the name of the Faculty here</h1>
+      <input
+        type="text"
+        id="searchInput"
+        name="facultyName"
+        placeholder="Search Faculty Name"
+      />
+      <button id="searchButton" type="submit">Search</button>
+    </div>
+
+    <div id="toggle-theme">
+      <input
+        type="radio"
+        id="toggle-theme-dark"
+        name="theme"
+        value="darkTheme"
+      />
+      <label for="toggle-theme-dark">Dark Theme</label><br />
+
+      <input
+        type="radio"
+        id="toggle-theme-light"
+        name="theme"
+        value="lightTheme"
+        checked
+      />
+      <label for="toggle-theme-light">Light Theme</label>
+    </div>
+    <div id="faculty-data"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

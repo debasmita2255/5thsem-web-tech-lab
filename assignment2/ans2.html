@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS-only Themes</title>
+    <style>
+      :root {
+        --page-bg: #e0e0e0;
+        --dialog-bg: #ffffff;
+        --text-color: #333333;
+        --border-color: #cccccc;
+        --btn-primary-bg: #4a8df8;
+        --btn-primary-text: #ffffff;
+        --btn-secondary-bg: #f1f1f1;
+        --btn-secondary-text: #333333;
+        --accent-color: #4a8df8;
+        --input-bg: #ffffff;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--page-bg);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #theme-dark:checked ~ .app {
+        --page-bg: #121212;
+        --dialog-bg: #2b2b2b;
+        --text-color: #e8e8e8;
+        --border-color: #5a5a5a;
+        --btn-primary-bg: #3a72cc;
+        --btn-primary-text: #ffffff;
+        --btn-secondary-bg: #3f3f3f;
+        --btn-secondary-text: #e8e8e8;
+        --accent-color: #5b9bf7;
+        --input-bg: #1f1f1f;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      }
+
+      #theme-hc:checked ~ .app {
+        --page-bg: #000000;
+        --dialog-bg: #000000;
+        --text-color: #ffffff;
+        --border-color: #ffff00;
+        --btn-primary-bg: #ffff00;
+        --btn-primary-text: #000000;
+        --btn-secondary-bg: #000000;
+        --btn-secondary-text: #ffff00;
+        --accent-color: #ffff00;
+        --input-bg: #000000;
+        --shadow: none;
+      }
+
+      .app {
+        background-color: var(--page-bg);
+        color: var(--text-color);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        min-height: 100vh;
+        padding: 20px;
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease;
+      }
+
+      .app,
+      .app * {
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease,
+          border-color 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .theme-picker {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .theme-picker label {
+        padding: 6px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        background-color: var(--btn-secondary-bg);
+        color: var(--btn-secondary-text);
+        user-select: none;
+      }
+
+      #theme-light:checked ~ .app label[for="theme-light"],
+      #theme-dark:checked ~ .app label[for="theme-dark"],
+      #theme-hc:checked ~ .app label[for="theme-hc"] {
+        background-color: var(--accent-color);
+        color: var(--btn-primary-text);
+        border-color: var(--accent-color);
+      }
+
+      #theme-light:focus-visible ~ .app label[for="theme-light"],
+      #theme-dark:focus-visible ~ .app label[for="theme-dark"],
+      #theme-hc:focus-visible ~ .app label[for="theme-hc"] {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+
+      .preview-container {
+        flex: 1 1 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+        border: 2px dashed var(--border-color);
+        border-radius: 6px;
+        padding: 20px;
+        min-height: 300px;
+      }
+
+      #document-preview {
+        background-color: #ffffff;
+        box-shadow: var(--shadow);
+        width: 21.6cm;
+        height: 27.9cm;
+        max-width: 100%;
+        padding: 2.54cm;
+        transition: all 0.3s ease;
+      }
+
+      .document-content {
+        border: 1px dotted #ccc;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .controls-container {
+        flex: 1 1 380px;
+        max-width: 480px;
+      }
+
+      .dialog {
+        background-color: var(--dialog-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+        width: 100%;
+      }
+
+      .dialog-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .dialog-header h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      .dialog-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 20px;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .section-title {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 15px;
+        font-size: 14px;
+        flex-wrap: wrap;
+      }
+      .radio-group input {
+        accent-color: var(--accent-color);
+      }
+
+      .select-input,
+      .margin-grid input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid var(--border-color);
+        background-color: var(--input-bg);
+        color: var(--text-color);
+      }
+
+      .color-picker {
+        width: 40px;
+        height: 25px;
+        padding: 0;
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+      }
+
+      .margin-grid {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 10px;
+        align-items: center;
+        font-size: 14px;
+      }
+
+      .dialog-footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .btn {
+        padding: 6px 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .btn-primary {
+        background-color: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+        border: none;
+      }
+      .btn-secondary {
+        background-color: var(--btn-secondary-bg);
+        color: var(--btn-secondary-text);
+      }
+
+      @media (max-width: 860px) {
+        body {
+          padding: 12px;
+        }
+
+        .app {
+          flex-direction: column;
+          gap: 24px;
+          padding: 16px;
+        }
+
+        .controls-container {
+          max-width: 100%;
+        }
+
+        .dialog-body {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        #document-preview {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 21.6 / 27.9;
+          padding: 8vw 6vw;
+        }
+
+        .dialog-footer {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .dialog-footer > div {
+          display: flex;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input type="radio" name="theme" id="theme-light" class="sr-only" checked />
+    <input type="radio" name="theme" id="theme-dark" class="sr-only" />
+    <input type="radio" name="theme" id="theme-hc" class="sr-only" />
+
+    <div class="app">
+      <div
+        class="controls-container"
+        style="order: 2; flex-basis: 100%; max-width: none; margin-bottom: 0"
+      >
+        <div class="theme-picker" role="radiogroup" aria-label="Select theme">
+          <label for="theme-light">Light</label>
+          <label for="theme-dark">Dark</label>
+          <label for="theme-hc">High contrast</label>
+        </div>
+      </div>
+
+      <div class="preview-container">
+        <div id="document-preview">
+          <div class="document-content">
+            Text area (Margins represented by outer border)
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-container">
+        <div class="dialog">
+          <div class="dialog-header">
+            <h3>Page Setup</h3>
+          </div>
+
+          <div class="dialog-body">
+            <div class="column">
+              <div>
+                <label class="section-title">Orientation</label>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="orientation"
+                      value="portrait"
+                      id="radio-portrait"
+                      checked
+                    />
+                    Portrait</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="orientation"
+                      value="landscape"
+                      id="radio-landscape"
+                    />
+                    Landscape</label
+                  >
+                </div>
+              </div>
+
+              <div>
+                <label class="section-title">Paper Size</label>
+                <select id="paper-size" class="select-input">
+                  <option value="letter">Letter (21.6 cm x 27.9 cm)</option>
+                  <option value="a4">A4 (21.0 cm x 29.7 cm)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="section-title">Page Colour</label>
+                <input
+                  type="color"
+                  id="page-color"
+                  value="#ffffff"
+                  class="color-picker"
+                />
+              </div>
+            </div>
+
+            <div class="column">
+              <div>
+                <label class="section-title"
+                  >Margins <span>(centimetres)</span></label
+                >
+                <div class="margin-grid">
+                  <label>Top</label>
+                  <input
+                    type="number"
+                    id="margin-top"
+                    value="2.54"
+                    step="0.1"
+                  />
+
+                  <label>Bottom</label>
+                  <input
+                    type="number"
+                    id="margin-bottom"
+                    value="2.54"
+                    step="0.1"
+                  />
+
+                  <label>Left</label>
+                  <input
+                    type="number"
+                    id="margin-left"
+                    value="2.54"
+                    step="0.1"
+                  />
+
+                  <label>Right</label>
+                  <input
+                    type="number"
+                    id="margin-right"
+                    value="2.54"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dialog-footer">
+            <div>
+              <button id="btn-ok" class="btn btn-primary">OK</button>
+              <button
+                class="btn btn-secondary"
+                onclick="alert('Dialog canceled. No changes applied.')"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("btn-ok").addEventListener("click", function () {
+        const docPreview = document.getElementById("document-preview");
+
+        const top = document.getElementById("margin-top").value;
+        const bottom = document.getElementById("margin-bottom").value;
+        const left = document.getElementById("margin-left").value;
+        const right = document.getElementById("margin-right").value;
+
+        const color = document.getElementById("page-color").value;
+
+        const size = document.getElementById("paper-size").value;
+        let width, height;
+
+        if (size === "letter") {
+          width = 21.6;
+          height = 27.9;
+        } else if (size === "a4") {
+          width = 21.0;
+          height = 29.7;
+        }
+
+        const isLandscape = document.getElementById("radio-landscape").checked;
+
+        if (isLandscape) {
+          let temp = width;
+          width = height;
+          height = temp;
+        }
+
+        docPreview.style.width = width + "cm";
+        docPreview.style.height = height + "cm";
+        docPreview.style.backgroundColor = color;
+
+        docPreview.style.paddingTop = top + "cm";
+        docPreview.style.paddingBottom = bottom + "cm";
+        docPreview.style.paddingLeft = left + "cm";
+        docPreview.style.paddingRight = right + "cm";
+
+        console.log("Settings applied successfully.");
+      });
+    </script>
+  </body>
+</html>
