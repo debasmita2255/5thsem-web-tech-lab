@@ -3,7 +3,6 @@ const statusElement = document.getElementById('status');
 const modeSelect = document.getElementById('modeSelect');
 const resetBtn = document.getElementById('resetBtn');
 
-// Emulating your Java char array '1' through '9'
 let grid = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let currentSymbol = 'X'; // X always goes first
 let isGameOver = false;
@@ -41,7 +40,6 @@ function handleCellClick(e) {
         makeMove(index, currentSymbol);
         
         if (!isGameOver && modeSelect.value === '1') {
-            // Give a slight delay so it feels natural
             setTimeout(makeBestComputerMove, 200);
         }
     }
@@ -99,7 +97,6 @@ function makeBestComputerMove() {
     }
 }
 
-// Minimax Algorithm (Translated directly from your Java logic)
 function minimax(currentGrid, depth, isMaximizing) {
     let result = checkWin(currentGrid);
     
