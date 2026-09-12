@@ -81,13 +81,13 @@ const pageContent = `
     <table>
         <tr>
             <th>UG<br>5<sup>th</sup> SEM</th>
-            <th>1<sup>st</sup> P<br>9.00-9.55</th>
-            <th>2<sup>nd</sup> P<br>9.55-10.50</th>
-            <th>3<sup>rd</sup> P<br>10.50-11.45</th>
-            <th>4<sup>th</sup> P<br>11.45-12.40</th>
-            <th>5<sup>th</sup> P<br>1.50-2.45</th>
-            <th>6<sup>th</sup> P<br>2.45-3.40</th>
-            <th>7<sup>th</sup> P<br>3.40-4.35</th>
+            <th>1<sup>st</sup> Period<br>9.00-9.55</th>
+            <th>2<sup>nd</sup> Period<br>9.55-10.50</th>
+            <th>3<sup>rd</sup> Period<br>10.50-11.45</th>
+            <th>4<sup>th</sup> Period<br>11.45-12.40</th>
+            <th>5<sup>th</sup> Period<br>1.50-2.45</th>
+            <th>6<sup>th</sup> Period<br>2.45-3.40</th>
+            <th>7<sup>th</sup> Period<br>3.40-4.35</th>
         </tr>
         <tr>
             <td>MON</td>

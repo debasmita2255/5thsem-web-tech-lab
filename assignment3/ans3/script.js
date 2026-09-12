@@ -71,7 +71,7 @@ function makeMove(index, symbol) {
     statusElement.textContent = `Player ${currentSymbol}'s turn`;
 }
 
-// Computer Move Logic (Translated from Java TicTacToe.java)
+// Computer Move Logic
 function makeBestComputerMove() {
     if (isGameOver) return;
     

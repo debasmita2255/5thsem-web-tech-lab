@@ -57,7 +57,7 @@ calculateBtn.addEventListener("click", () => {
       hasFailed = true;
     }
 
-    subjectsHTML += `<li>Subject ${i + 1}: ${marks} marks (Credit: ${credits}) - Grade: <strong>${letter}</strong> (${point} pts)</li>`;
+    subjectsHTML += `<li>Subject ${i + 1}: ${marks} marks (Credit: ${credits}) - Grade: <b>${letter}</b> (${point} pts)</li>`;
   }
 
   subjectsHTML += "</ul>";

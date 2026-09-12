@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 4 - Master File</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card h3 { margin-top: 0; color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"], input[type="password"], select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #0056b3; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #004494; }
+        .result { margin-top: 15px; padding: 10px; background-color: #e9ecef; border-radius: 4px; min-height: 20px; font-weight: bold; }
+        img.animal-img { width: 80px; height: 80px; object-fit: cover; margin-right: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h1>AJAX & PHP Client-Server Application</h1>
+    <div class="grid-container">
+
+        <!-- Question 1: Hello PHP -->
+        <div class="card">
+            <h3>1. Hello PHP</h3>
+            <button onclick="q1Hello()">Execute</button>
+            <div id="res1" class="result"></div>
+        </div>
+
+        <!-- Question 2: Student Grade -->
+        <div class="card">
+            <h3>2. Student Grade</h3>
+            <div class="input-group">
+                <label for="marks">Enter Marks (0-100):</label>
+                <input type="number" id="marks" min="0" max="100">
+            </div>
+            <button onclick="q2Grade()">Get Grade</button>
+            <div id="res2" class="result"></div>
+        </div>
+
+        <!-- Question 3: Odd Numbers 1 to N[cite: 1] -->
+        <div class="card">
+            <h3>3. Odd Numbers (1 to N)</h3>
+            <div class="input-group">
+                <label for="nValue">Enter N:</label>
+                <input type="number" id="nValue" min="1">
+            </div>
+            <button onclick="q3OddNumbers()">Show Odds</button>
+            <div id="res3" class="result"></div>
+        </div>
+
+        <!-- Question 4: Arrays (Sort and Animal Names)[cite: 1] -->
+        <div class="card">
+            <h3>4. PHP Arrays</h3>
+            <div class="input-group">
+                <label for="sortInput">i. Sort N Numbers (comma separated):</label>
+                <input type="text" id="sortInput" placeholder="e.g. 5, 2, 9, 1">
+            </div>
+            <button onclick="q4Sort()">Sort Numbers</button>
+            
+            <div class="input-group" style="margin-top: 15px;">
+                <label for="animalCount">ii. Number of Animal Names (N):</label>
+                <input type="number" id="animalCount" min="1" max="5">
+            </div>
+            <button onclick="q4Animals()">Show Names</button>
+            <div id="res4" class="result"></div>
+        </div>
+
+        <!-- Question 5: Form Elements Feedback[cite: 1] -->
+        <div class="card">
+            <h3>5. Form Feedback</h3>
+            <form id="feedbackForm" onsubmit="event.preventDefault(); q5FormFeedback();">
+                <div class="input-group">
+                    <label>Textbox:</label>
+                    <input type="text" name="userName" required>
+                </div>
+                <div class="input-group">
+                    <label>Password:</label>
+                    <input type="password" name="userPass" required>
+                </div>
+                <div class="input-group">
+                    <label>Option Button:</label>
+                    <input type="radio" name="userPlan" value="Basic" checked> Basic
+                    <input type="radio" name="userPlan" value="Premium"> Premium
+                </div>
+                <div class="input-group">
+                    <label>List Box:</label>
+                    <select name="userCity">
+                        <option value="New York">New York</option>
+                        <option value="London">London</option>
+                        <option value="Tokyo">Tokyo</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>File Upload:</label>
+                    <input type="file" name="userFile">
+                </div>
+                <!-- Hidden element requirement[cite: 1] -->
+                <input type="hidden" name="hiddenId" value="SystemCode993">
+                <button type="submit">Submit Form</button>
+            </form>
+            <div id="res5" class="result"></div>
+        </div>
+
+        <!-- Question 6: N Images of Animals[cite: 1] -->
+        <div class="card">
+            <h3>6. Animal Images</h3>
+            <div class="input-group">
+                <label for="imgCount">Number of Images (N, max 5):</label>
+                <input type="number" id="imgCount" min="1" max="5">
+            </div>
+            <button onclick="q6Images()">Show Images</button>
+            <div id="res6" class="result"></div>
+        </div>
+
+    </div>
+
+    <!-- Link to our JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
