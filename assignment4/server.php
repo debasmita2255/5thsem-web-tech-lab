@@ -11,6 +11,8 @@ if (isset($_POST['action'])) {
         case 'q4ii': echo getAnimalNames($_POST['count']); break;
         case 'q5': echo processFormFeedback(); break;
         case 'q6': echo getAnimalImages($_POST['count']); break;
+        case 'q7': echo fetchDatabaseUsers(); break;
+        case 'q8': echo calculateAdvancedGrade($_POST['math'], $_POST['science'], $_POST['english']); break;
         default: echo "Invalid request."; break;
     }
 }
@@ -96,5 +98,82 @@ function getAnimalImages($count) {
     }
     
     return $htmlOutput ?: "No images requested.";
+}
+
+// 7. Function to request data from the database[cite: 1]
+function fetchDatabaseUsers() {
+    // Database credentials (update these if your local MySQL setup requires a password)
+    $host = 'localhost';
+    $db   = 'assignment4';
+    $user = 'root'; 
+    $pass = 'XiaomiPad8'; 
+    
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ];
+
+    try {
+        // Attempt to connect to the database
+        $pdo = new PDO($dsn, $user, $pass, $options);
+        
+        // Execute a simple query
+        $stmt = $pdo->query('SELECT name, email FROM users');
+        
+        // Format the returned data as HTML
+        $output = "<strong>Database Users:</strong><ul>";
+        while ($row = $stmt->fetch()) {
+            $output .= "<li>" . htmlspecialchars($row['name']) . " - " . htmlspecialchars($row['email']) . "</li>";
+        }
+        $output .= "</ul>";
+        
+        return $output;
+        
+    } catch (PDOException $e) {
+        return "Database connection failed: " . $e->getMessage();
+    }
+}
+
+function calculateAdvancedGrade($math, $science, $english) {
+    // 1. Use a PHP array to store subject-wise marks[cite: 1]
+    $subjectMarks = [
+        "Math" => (float)$math,
+        "Science" => (float)$science,
+        "English" => (float)$english
+    ];
+
+    foreach ($subjectMarks as $mark) {
+        if ($mark < 0 || $mark > 100) {
+            return "<span style='color: red;'><strong>Error:</strong> Marks must be between 0 and 100.</span>";
+        }
+    }
+    
+    // 2. Calculate the total and average marks[cite: 1]
+    $totalMarks = array_sum($subjectMarks);
+    $subjectCount = count($subjectMarks);
+    $averageMarks = $totalMarks / $subjectCount;
+    
+    // 3. Determine the student's grade based on the average[cite: 1]
+    if ($averageMarks >= 90) $grade = "A+";
+    elseif ($averageMarks >= 80) $grade = "A";
+    elseif ($averageMarks >= 70) $grade = "B";
+    elseif ($averageMarks >= 60) $grade = "C";
+    elseif ($averageMarks >= 50) $grade = "D";
+    else $grade = "F (Fail)";
+    
+    // 4. Format and display the information[cite: 1]
+    $output = "<strong>Subject Marks:</strong><ul>";
+    foreach ($subjectMarks as $subject => $mark) {
+        $output .= "<li>$subject: $mark</li>";
+    }
+    $output .= "</ul>";
+    
+    $output .= "<strong>Total Marks:</strong> $totalMarks <br>";
+    // Use number_format to keep the average to 2 decimal places
+    $output .= "<strong>Average:</strong> " . number_format($averageMarks, 2) . " <br>"; 
+    $output .= "<strong>Final Grade:</strong> <span style='color: #0056b3;'>$grade</span>";
+    
+    return $output;
 }
 ?>

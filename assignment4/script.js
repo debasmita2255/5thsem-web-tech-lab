@@ -75,3 +75,34 @@ function q6Images() {
     fd.append('count', count);
     sendToServer(fd, 'res6');
 }
+
+// 7. Function to request data from the database[cite: 1]
+function q7Database() {
+    let fd = new FormData();
+    fd.append('action', 'q7');
+    sendToServer(fd, 'res7');
+}
+
+function q8AdvancedGrade() {
+    let math = document.getElementById('mathMark').value;
+    let science = document.getElementById('scienceMark').value;
+    let english = document.getElementById('englishMark').value;
+    
+    // Check for empty inputs
+    if(math === "" || science === "" || english === "") {
+        return alert("Please enter marks for all three subjects");
+    }
+    
+    // NEW: Check if any of the marks fall outside the 0-100 range
+    if (math < 0 || math > 100 || science < 0 || science > 100 || english < 0 || english > 100) {
+        return alert("Invalid input: All marks must be strictly between 0 and 100.");
+    }
+    
+    let fd = new FormData();
+    fd.append('action', 'q8');
+    fd.append('math', math);
+    fd.append('science', science);
+    fd.append('english', english);
+    
+    sendToServer(fd, 'res8');
+}
