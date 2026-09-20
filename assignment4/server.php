@@ -17,12 +17,12 @@ if (isset($_POST['action'])) {
     }
 }
 
-// 1. Function to Display "Hello PHP"[cite: 1]
+// 1. Function to Display "Hello PHP"
 function generateHello() {
     return "Hello PHP";
 }
 
-// 2. Function to evaluate student grade based on marks[cite: 1]
+// 2. Function to evaluate student grade based on marks
 function evaluateGrade($marks) {
     if ($marks >= 90) return "Grade: A+";
     if ($marks >= 80) return "Grade: A";
@@ -32,7 +32,7 @@ function evaluateGrade($marks) {
     return "Grade: F (Fail)";
 }
 
-// 3. Function to display odd numbers from 1 to N[cite: 1]
+// 3. Function to display odd numbers from 1 to N
 function getOddNumbers($n) {
     $odds = [];
     for ($i = 1; $i <= $n; $i++) {
@@ -43,21 +43,21 @@ function getOddNumbers($n) {
     return "Odd numbers: " . implode(', ', $odds);
 }
 
-// 4i. Function to use array to sort N numbers[cite: 1]
+// 4i. Function to use array to sort N numbers
 function sortNumbers($numberString) {
     $arr = array_map('trim', explode(',', $numberString));
     sort($arr, SORT_NUMERIC);
     return "Sorted Numbers: " . implode(', ', $arr);
 }
 
-// 4ii. Function to use array to display N names of animals[cite: 1]
+// 4ii. Function to use array to display N names of animals
 function getAnimalNames($count) {
     $animals = ["Lion", "Elephant", "Tiger", "Giraffe", "Zebra", "Monkey"];
     $selected = array_slice($animals, 0, $count);
     return "Animals: " . implode(', ', $selected);
 }
 
-// 5. Function to display server-side feedback from form elements[cite: 1]
+// 5. Function to display server-side feedback from form elements
 function processFormFeedback() {
     $text = htmlspecialchars($_POST['userName'] ?? '');
     $pass = htmlspecialchars($_POST['userPass'] ?? '');
@@ -79,7 +79,7 @@ function processFormFeedback() {
            "Hidden Element: $hidden";
 }
 
-// 6. Function to use array to display N images of animals[cite: 1]
+// 6. Function to use array to display N images of animals
 function getAnimalImages($count) {
     // Array storing placeholder image URLs 
     $images = [
@@ -100,7 +100,7 @@ function getAnimalImages($count) {
     return $htmlOutput ?: "No images requested.";
 }
 
-// 7. Function to request data from the database[cite: 1]
+// 7. Function to request data from the database
 function fetchDatabaseUsers() {
     // Database credentials (update these if your local MySQL setup requires a password)
     $host = 'localhost';
@@ -136,7 +136,7 @@ function fetchDatabaseUsers() {
 }
 
 function calculateAdvancedGrade($math, $science, $english) {
-    // 1. Use a PHP array to store subject-wise marks[cite: 1]
+    // 1. Use a PHP array to store subject-wise marks
     $subjectMarks = [
         "Math" => (float)$math,
         "Science" => (float)$science,
@@ -149,12 +149,12 @@ function calculateAdvancedGrade($math, $science, $english) {
         }
     }
     
-    // 2. Calculate the total and average marks[cite: 1]
+    // 2. Calculate the total and average marks
     $totalMarks = array_sum($subjectMarks);
     $subjectCount = count($subjectMarks);
     $averageMarks = $totalMarks / $subjectCount;
     
-    // 3. Determine the student's grade based on the average[cite: 1]
+    // 3. Determine the student's grade based on the average
     if ($averageMarks >= 90) $grade = "A+";
     elseif ($averageMarks >= 80) $grade = "A";
     elseif ($averageMarks >= 70) $grade = "B";
@@ -162,7 +162,7 @@ function calculateAdvancedGrade($math, $science, $english) {
     elseif ($averageMarks >= 50) $grade = "D";
     else $grade = "F (Fail)";
     
-    // 4. Format and display the information[cite: 1]
+    // 4. Format and display the information
     $output = "<strong>Subject Marks:</strong><ul>";
     foreach ($subjectMarks as $subject => $mark) {
         $output .= "<li>$subject: $mark</li>";

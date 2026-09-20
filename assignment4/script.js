@@ -1,4 +1,4 @@
-// A reusable function to handle server communication
+// function to handle server communication
 function sendToServer(formData, resultContainerId) {
     fetch('server.php', {
         method: 'POST',
@@ -11,14 +11,14 @@ function sendToServer(formData, resultContainerId) {
     .catch(error => console.error('Error:', error));
 }
 
-// 1. Function to Display "Hello PHP"[cite: 1]
+// 1. Function to Display "Hello PHP"
 function q1Hello() {
     let fd = new FormData();
     fd.append('action', 'q1');
     sendToServer(fd, 'res1');
 }
 
-// 2. Function to evaluate student grade based on input marks[cite: 1]
+// 2. Function to evaluate student grade based on input marks
 function q2Grade() {
     let marks = document.getElementById('marks').value;
     if(marks === "") return alert("Please enter marks");
@@ -28,7 +28,7 @@ function q2Grade() {
     sendToServer(fd, 'res2');
 }
 
-// 3. Function to request odd numbers from 1 to N[cite: 1]
+// 3. Function to request odd numbers from 1 to N
 function q3OddNumbers() {
     let n = document.getElementById('nValue').value;
     if(n === "") return alert("Please enter a value for N");
@@ -38,7 +38,7 @@ function q3OddNumbers() {
     sendToServer(fd, 'res3');
 }
 
-// 4i. Function to sort N numbers[cite: 1]
+// 4i. Function to sort N numbers
 function q4Sort() {
     let numbers = document.getElementById('sortInput').value;
     if(numbers === "") return alert("Please enter numbers");
@@ -48,7 +48,7 @@ function q4Sort() {
     sendToServer(fd, 'res4');
 }
 
-// 4ii. Function to retrieve N animal names[cite: 1]
+// 4ii. Function to retrieve N animal names
 function q4Animals() {
     let count = document.getElementById('animalCount').value;
     if(count === "") return alert("Please enter an amount");
@@ -58,7 +58,7 @@ function q4Animals() {
     sendToServer(fd, 'res4');
 }
 
-// 5. Function to send form data with multiple input types to the server[cite: 1]
+// 5. Function to send form data with multiple input types to the server
 function q5FormFeedback() {
     let form = document.getElementById('feedbackForm');
     let fd = new FormData(form); 
@@ -66,7 +66,7 @@ function q5FormFeedback() {
     sendToServer(fd, 'res5');
 }
 
-// 6. Function to request N image URLs of animals[cite: 1]
+// 6. Function to request N image URLs of animals
 function q6Images() {
     let count = document.getElementById('imgCount').value;
     if(count === "") return alert("Please enter an amount");
@@ -76,7 +76,7 @@ function q6Images() {
     sendToServer(fd, 'res6');
 }
 
-// 7. Function to request data from the database[cite: 1]
+// 7. Function to request data from the database
 function q7Database() {
     let fd = new FormData();
     fd.append('action', 'q7');
@@ -88,12 +88,10 @@ function q8AdvancedGrade() {
     let science = document.getElementById('scienceMark').value;
     let english = document.getElementById('englishMark').value;
     
-    // Check for empty inputs
     if(math === "" || science === "" || english === "") {
         return alert("Please enter marks for all three subjects");
     }
     
-    // NEW: Check if any of the marks fall outside the 0-100 range
     if (math < 0 || math > 100 || science < 0 || science > 100 || english < 0 || english > 100) {
         return alert("Invalid input: All marks must be strictly between 0 and 100.");
     }
