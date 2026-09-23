@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Database Manager</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { margin-top: 0; color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* Form Styling */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 15px; margin-top: 5px; }
+        button { background-color: #0056b3; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #004494; }
+        .btn-small { padding: 5px 10px; font-size: 0.9em; margin-right: 5px; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #a71d2a; }
+        .btn-warning { background-color: #ffc107; color: black; }
+        .btn-warning:hover { background-color: #d39e00; }
+        #message { margin-top: 10px; font-weight: bold; }
+
+        /* Table Styling */
+        .search-box { margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f9fa; cursor: pointer; user-select: none; transition: background 0.2s; }
+        th:hover { background-color: #e2e6ea; }
+        .sort-icon { font-size: 0.8em; margin-left: 5px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Q4: Form for inserting new records -->
+        <div class="card">
+            <h2>Add New Book</h2>
+            <form id="addForm" onsubmit="event.preventDefault(); submitForm();">
+                <div class="form-group">
+                    <label>Title (Textbox):</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (Numeric):</label>
+                    <input type="number" name="price" id="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Category (List Box):</label>
+                    <select name="category" id="category">
+                        <option value="Textbook">Textbook</option>
+                        <option value="Reference">Reference</option>
+                        <option value="Fiction">Fiction</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status (Option Button/Radio):</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="status" value="Available" checked> Available</label>
+                        <label><input type="radio" name="status" value="Checked Out"> Checked Out</label>
+                    </div>
+                </div>
+                <!-- Hidden element requirement -->
+                <input type="hidden" name="action" value="insert">
+                <input type="hidden" name="source" value="web_client">
+                
+                <button type="submit">Add Record</button>
+                <div id="message"></div>
+            </form>
+        </div>
+
+        <!-- Q3, Q5, Q7, Q8: Live Data Table with Search and Sort -->
+        <div class="card">
+            <h2>Database Records</h2>
+            <div class="search-box">
+                <label>Live Search (Q5):</label>
+                <input type="text" id="searchInput" placeholder="Type to search titles..." onkeyup="fetchTable()">
+            </div>
+            <div id="tableContainer">
+                <!-- AJAX Table will inject here -->
+            </div>
+        </div>
+
+        <!-- Q6: PHP Array Calculation Display -->
+        <div class="card">
+            <h2>Price Analysis (Q6)</h2>
+            <button onclick="fetchAnalysis()">Run Array Analysis</button>
+            <div id="analysisContainer" style="margin-top: 15px;"></div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
