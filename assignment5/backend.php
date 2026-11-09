@@ -2,9 +2,9 @@
 // Database Configuration
 $host = 'localhost';
 $db   = 'webtechlab';
-$user = 'root'; // Update with your DB username
-$pass = 'XiaomiPad8';     // Update with your DB password
-$tableName = '2024CSB008'; // Update with your table name
+$user = 'root';
+$pass = 'XiaomiPad8';
+$tableName = '2024CSB008';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 $options = [

@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS webtechlab;
 USE webtechlab;
 
--- Replace 'roll_12345' with your actual roll number
 CREATE TABLE 2024CSB008 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
@@ -10,7 +9,6 @@ CREATE TABLE 2024CSB008 (
     status VARCHAR(20) NOT NULL
 );
 
--- Inserting 5 sample records directly as requested
 INSERT INTO 2024CSB008 (title, category, price, status) VALUES
 ('Introduction to Algorithms', 'Textbook', 85.00, 'Available'),
 ('Clean Code', 'Reference', 45.00, 'Available'),

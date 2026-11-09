@@ -1,5 +1,4 @@
 <?php
-// Route the incoming request to the correct function based on the 'action' variable
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
@@ -81,7 +80,6 @@ function processFormFeedback() {
 
 // 6. Function to use array to display N images of animals
 function getAnimalImages($count) {
-    // Array storing placeholder image URLs 
     $images = [
         "https://placebear.com/100/100",
         "https://placebear.com/101/100",
@@ -102,7 +100,6 @@ function getAnimalImages($count) {
 
 // 7. Function to request data from the database
 function fetchDatabaseUsers() {
-    // Database credentials (update these if your local MySQL setup requires a password)
     $host = 'localhost';
     $db   = 'assignment4';
     $user = 'root'; 
@@ -115,13 +112,10 @@ function fetchDatabaseUsers() {
     ];
 
     try {
-        // Attempt to connect to the database
         $pdo = new PDO($dsn, $user, $pass, $options);
         
-        // Execute a simple query
         $stmt = $pdo->query('SELECT name, email FROM users');
         
-        // Format the returned data as HTML
         $output = "<strong>Database Users:</strong><ul>";
         while ($row = $stmt->fetch()) {
             $output .= "<li>" . htmlspecialchars($row['name']) . " - " . htmlspecialchars($row['email']) . "</li>";
@@ -149,12 +143,10 @@ function calculateAdvancedGrade($math, $science, $english) {
         }
     }
     
-    // 2. Calculate the total and average marks
     $totalMarks = array_sum($subjectMarks);
     $subjectCount = count($subjectMarks);
     $averageMarks = $totalMarks / $subjectCount;
     
-    // 3. Determine the student's grade based on the average
     if ($averageMarks >= 90) $grade = "A+";
     elseif ($averageMarks >= 80) $grade = "A";
     elseif ($averageMarks >= 70) $grade = "B";
@@ -162,7 +154,6 @@ function calculateAdvancedGrade($math, $science, $english) {
     elseif ($averageMarks >= 50) $grade = "D";
     else $grade = "F (Fail)";
     
-    // 4. Format and display the information
     $output = "<strong>Subject Marks:</strong><ul>";
     foreach ($subjectMarks as $subject => $mark) {
         $output .= "<li>$subject: $mark</li>";
@@ -170,7 +161,6 @@ function calculateAdvancedGrade($math, $science, $english) {
     $output .= "</ul>";
     
     $output .= "<strong>Total Marks:</strong> $totalMarks <br>";
-    // Use number_format to keep the average to 2 decimal places
     $output .= "<strong>Average:</strong> " . number_format($averageMarks, 2) . " <br>"; 
     $output .= "<strong>Final Grade:</strong> <span style='color: #0056b3;'>$grade</span>";
     
